@@ -1,0 +1,59 @@
+<section id="book-a-table1" class="book-a-table">
+  <div data-aos="fade-up" class="container">
+    <div class="section-header">
+      <h2>Search Restaurants</h2>
+      <p>Book Your Stay With Us</p>
+    </div>
+    <div class="row g-0">
+      <div data-aos="zoom-out" data-aos-delay="200" class="col-lg-4 reservation-img" style="background-image: url(assets/Granola-1.jpg);"></div>
+      <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
+        <div style="margin: 10px;">
+          <div class="row gy-4">
+            <div class="col-lg-12 col-md-12">
+              <input type="text" name="searchText" id="searchText" placeholder="Search restaurants" class="form-control">
+            </div>
+          </div>
+          <div class="row gy-4">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <select [(ngModel)]="selectedRestaurantId" (change)="getRestaurantBranchById()">
+                  <option value="0">Select</option>
+                  <option *ngFor="let item of restuarantList" [value]="item.id">
+                  {{item.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <select id="branchSelect" class="form-control" #branchRestaurant (change)="getDiningTableByBanchId(branchRestaurant.value)">
+                  <option selected value="-1">Select a Restaurant Branch</option>
+                  <option *ngFor="let item of restaurantBranches" [value]="item.id">
+                  {{
+                    item.name
+                  }}
+                    </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+              <p>You have selected <span style="color: mediumvioletred;">Awesome Restaurant</span> and we have 7 branches, select a branch to proceed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-container" style="display: flex;">
+    <ng-container *ngFor="let item of uniqueDates">
+      <div class="item-wrapper" (click)="sendDataToDiningTable(item)">
+        <span>{{ item | date }}</span>
+        <img src="assets/image.png" alt="Image 1" style="width: 70px; height: 70px;">
+      </div>
+    </ng-container>
+  </div>
+  
+</section>
+
+<app-diningTable [diningTable]="bookingTable"></app-diningTable>

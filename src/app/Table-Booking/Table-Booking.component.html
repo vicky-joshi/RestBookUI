@@ -1,0 +1,58 @@
+<form [formGroup]="userFormGroup">
+<section id="book-a-table11" class="book-a-table">
+  <div data-aos="fade-up" class="container">
+    <div class="section-header">
+      <h2>Reserving for Mickey Mouse Table</h2>
+      <p>Tell us <span>Your details</span> Just a little</p>
+    </div>
+    <div class="row col-md-12 col-lg-12">
+    
+        <div class="form-group">
+          <label for=""> First NAme</label>
+          <input type="text" formControlName="firstName" class="form-control">
+           <span *ngIf="userFormGroup.get('firstName')?.errors?.['required']
+           && (userFormGroup.get('firstName')?.dirty)
+           ">
+           Pleas eneter First Name
+           </span>
+        </div>
+
+        <br>
+      <div class="form-group">
+          <input type="text" id="lastName" formControlName="lastName" placeholder="Last Name" autocomplete="off" class="form-control ng-untouched ng-pristine ng-invalid" fdprocessedid="1hg9te">
+        <span *ngIf="userFormGroup.get('lastName')?.errors?.['required']
+         && (userFormGroup.get('lastName')?.dirty)
+        ">
+        Please enter last name
+        </span>
+        </div>
+        <br>
+        <div class="form-group">
+          <input type="email" id="email" formControlName="email" placeholder="Email Id" autocomplete="off" class="form-control ng-untouched ng-pristine ng-invalid" fdprocessedid="v79vti">
+          <span *ngIf="userFormGroup.get('email')?.errors?.['required']
+           && (userFormGroup.get('email')?.dirty)
+          ">
+            Please enter email
+            </span>
+            <span *ngIf="userFormGroup.get('email')?.errors?.['email']">
+              Please enter valid email
+              </span>
+        </div>
+        <br>
+        <div class="form-group"> 
+    <input type="file" formControlName="profileImage" multiple="true" class="form-control"  (change)="onelectFile($event)"/>
+   <span *ngIf="userFormGroup.get('profileImage')?.errors?.['required']
+   && (userFormGroup.get('profileImage')?.dirty||userFormGroup.get('profileImage')?.touched)
+   ">
+     please select profile Image
+  </span>
+<span *ngIf="userFormGroup.get('profileImage')?.errors?.['invalidfile']">Please select image file</span>
+
+  </div>
+        <br>
+        <button type="button" (click)="SaveUserData()" class="btn btn-primary" >Submit</button>
+
+    </div>
+  </div>
+</section>
+</form> 

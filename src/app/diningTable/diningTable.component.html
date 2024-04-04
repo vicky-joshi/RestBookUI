@@ -1,0 +1,36 @@
+<div class="form-group mt-3">
+  <div class="row justify-content-center dining-div">
+      <div *ngFor="let table of diningTable" class="col-md-4 mb-4">                            
+          <div class="card dining-table-card">
+              <div class="card-header text-center">
+                  <h5 class="card-title">{{ table.tableName }}</h5>
+              </div>
+              <img src="../../assets/custom/dining-table.png"
+                  class="card-img-top dining-table-img" alt="Dining Table">
+              <div class="card-body">
+                  <p class="card-text">
+                      <strong>Date:</strong> {{ table.reservationDay | date:'longDate' }}
+                  </p>
+                  <p class="card-text">
+                      <strong>Meal Type:</strong> {{ table.mealType }}
+                  </p>
+                  <p class="card-text">
+                      <strong>Table Status:</strong> {{ table.tableStatus }}
+                  </p>
+                  <button class="btn btn-info" (click)="openModal(template)">Book Table</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-Table-Booking (userData)="getUserDetails($event)"></app-Table-Booking>
+  </div>
+</ng-template>
